@@ -10,10 +10,21 @@ public class ControleDeLocacao {
 
 	Map<Associado, List<Acervo>> emprestimos = new HashMap<Associado, List<Acervo>>();
 
-	public boolean adicionaEmprestimo(Acervo acervo, Associado associado) {
+	public boolean adicionaEmprestimo(Associado associado, Acervo acervo) {
 		List<Acervo> list = new ArrayList<Acervo>();
-		acervo.setLocado(true);
 		list.add(acervo);
+
+		for (Entry<Associado, List<Acervo>> entry : emprestimos.entrySet()) {
+			List<Acervo> value = entry.getValue();
+
+			for (Acervo ac : value) {
+				if (entry.getKey().equals(associado)) {
+					list.add(ac);
+				}
+			}
+		}
+
+		acervo.setLocado(true);
 		emprestimos.put(associado, list);
 
 		return true;
@@ -28,16 +39,16 @@ public class ControleDeLocacao {
 	}
 
 	public Map<Associado, List<Acervo>> getEmprestimos() {
-		
+
 		for (Entry<Associado, List<Acervo>> entry : emprestimos.entrySet()) {
-		    Associado key = entry.getKey();
-		    List<Acervo> value = entry.getValue();
-		    System.out.print(key + ": ");
-		    
-		    for(Acervo aString : value){
-		        System.out.print(aString.toString()+", ");
-		    }
-		    System.out.println();
+			Associado key = entry.getKey();
+			List<Acervo> value = entry.getValue();
+			System.out.print(key + ": ");
+
+			for (Acervo aString : value) {
+				System.out.print(aString.toString() + ", ");
+			}
+			System.out.println();
 		}
 		return emprestimos;
 	}

@@ -1,9 +1,5 @@
 package testeMAP;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 public class test {
 
 	public static void main(String[] args) {
@@ -20,9 +16,9 @@ public class test {
 		
 		ControleDeLocacao loc1 = new ControleDeLocacao();
 		
-		loc1.adicionaEmprestimo(filme1, associado1);
-
-		loc1.adicionaEmprestimo(filme2, associado2);
+		loc1.adicionaEmprestimo(associado1, filme1);
+		loc1.adicionaEmprestimo(associado2, filme2);
+		loc1.adicionaEmprestimo(associado1, filme2);
 		
 		loc1.getEmprestimos();
 		
